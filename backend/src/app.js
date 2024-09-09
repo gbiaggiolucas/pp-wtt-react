@@ -3,11 +3,11 @@ const cors = require('cors');
 const app = express();
 require('dotenv');
 
-const taskRouter = require('./routes/taskRouter');
+const userRouter = require('./routes/userRouter');
 
 app.set('port', process.env.PORT || 3005);
 app.use(cors());
 app.use(express.json());
-app.use('/api', taskRouter);
+app.use('/api', userRouter);
 
 module.exports = app

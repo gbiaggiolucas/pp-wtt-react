@@ -7,25 +7,21 @@
 :root {
   --cor-topo: #0081FF;
   --cor-meio: #00C0FF;
-  --cor-branco: #FFFFFF;
   --cor-texto: #000000;
   --cor-borda-bg: #000000;
   --cor-topo-turn: #0081FF;
-  --cor-meio-turn: #00C0FF;
-  --cor-branco-turn: #FFFFFF;
+  --cor-fundo-turn: #00C0FF;
 }
 
 body.dark-mode {
-  --cor-topo-turn: #333333;
-  --cor-meio-turn: #333333;
-  --cor-branco-turn: #333333;
+  --cor-fundo-turn: #333333;
   --cor-fundo: #121212;
   --cor-texto: #FFFFFF;
   --cor-borda-bg: #00C0FF;
 }
 
 body {
-  background: linear-gradient(to top, var(--cor-topo), var(--cor-meio), var(--cor-branco));
+  background: var(--cor-fundo-turn);
   font-family: Arial, sans-serif; /* Fonte padrão */
   display: flex;
   flex-direction: column;
@@ -125,7 +121,7 @@ input {
   position: fixed;
   top: 0;
   width: 100%;
-  background: linear-gradient(to top, var(--cor-topo), var(--cor-meio), var(--cor-branco));
+  background: linear-gradient(to top, var(--cor-topo), var(--cor-meio));
   background-color: #f8f9fa;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -172,7 +168,7 @@ input {
   right: -250px;
   width: 250px;
   height: 100%;
-  background: linear-gradient(to top, var(--cor-topo-turn), var(--cor-meio-turn), var(--cor-branco-turn));
+  background: var(--cor-fundo-turn);
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
   transition: right 0.3s ease;
   color: var(--cor-texto);
@@ -253,7 +249,7 @@ main {
   font-family: 'Lato', sans-serif;
   font-weight: 700; /* Negrito */
   font-size: 1.2rem; /* Um pouco maior que o texto padrão */
-  color: #2c3e50; /* Azul escuro elegante */
+  color: var(--cor-texto);
   margin-top: 20px;
 }
 
