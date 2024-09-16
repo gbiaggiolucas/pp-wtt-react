@@ -57,6 +57,7 @@ async function login(request, response) {
                 .json({
                     success: false,
                     message: "Senha incorreta",
+                    data: err
                 })
             }
         } else {

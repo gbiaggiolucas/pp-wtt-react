@@ -5,12 +5,15 @@
 }
 
 :root {
-  --cor-topo: #0081FF;
+  --cor-topo: #45a7f8;
   --cor-meio: #00C0FF;
   --cor-texto: #000000;
   --cor-borda-bg: #000000;
-  --cor-topo-turn: #0081FF;
-  --cor-fundo-turn: #00C0FF;
+  --cor-topo-turn: #45a7f8;
+  --cor-fundo-turn: #caf7ff;
+  --cor-daily-quest: #f26e72;
+  --cor-work-time: #adf88b;
+  --cor-school-time: #008bc6;
 }
 
 body.dark-mode {
@@ -18,6 +21,9 @@ body.dark-mode {
   --cor-fundo: #121212;
   --cor-texto: #FFFFFF;
   --cor-borda-bg: #00C0FF;
+  --cor-daily-quest: #cb4c53;
+  --cor-work-time: #008958;
+  --cor-school-time: #005086;
 }
 
 body {
@@ -282,13 +288,13 @@ p {
 }
 
 .worktime {
-  background-color: #05FF00;
+  background-color: var(--cor-work-time);
 }
 
 .school {
-  background-color: blue;
+  background-color: var(--cor-school-time);
 }
 
 .dailyquest {
-  background-color: #c82333;
+  background-color: var(--cor-daily-quest);
 }

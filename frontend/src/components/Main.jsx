@@ -87,7 +87,7 @@ const Main = () => {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> 
             </nav>
             <main>
                 <div className="container">
