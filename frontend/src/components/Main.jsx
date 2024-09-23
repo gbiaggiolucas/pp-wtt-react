@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import logo from "../img/WTT.png";
 import { Link } from "react-router-dom";
-import { Bar } from "react-chartjs-2";
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
@@ -15,14 +14,15 @@ const Main = () => {
     };
 
     const data = {
-        labels: ['Facebook', 'Instagram', 'WhatsApp', 'TikTok'],
+        labels: ['Facebook', 'Instagram', 'Youtube', 'WhatsApp', 'TikTok'],
         datasets: [
             {
                 label: 'Tempo de uso (minutos)',
-                data: [120, 180, 150, 240], // Tempo em minutos
+                data: [120, 180, 150, 100, 120], // Tempo em minutos
                 backgroundColor: [
                     'rgba(24, 119, 242, 0.8)',
-                    'rgba(221, 42, 123, 0.8)',
+                    'rgba(219, 129, 217, 0.8)',
+                    'rgba(219, 88, 83, 0.8)',
                     'rgba(37, 211, 102, 0.8)',
                     'rgba(0, 0, 0, 0.8)',
                 ],
@@ -35,9 +35,7 @@ const Main = () => {
     const options = {
         responsive: true,
         plugins: {
-            legend: {
-                position: 'top',
-            },
+            legend: false,
             tooltip: {
                 enabled: true,
             },
