@@ -18,7 +18,7 @@ const Main = () => {
         datasets: [
             {
                 label: 'Tempo de uso (minutos)',
-                data: [120, 180, 150, 100, 120], // Tempo em minutos
+                data: [20, 60, 60, 45, 40], // Tempo em minutos
                 backgroundColor: [
                     'rgba(24, 119, 242, 0.8)',
                     'rgba(219, 129, 217, 0.8)',
