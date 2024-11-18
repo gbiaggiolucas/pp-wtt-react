@@ -5,6 +5,7 @@ import Signin from './components/Signin';
 import Main from './components/Main';
 import Metas from './components/Metas';
 import Config from './components/Config';
+import FakeTime from './components/FakeTime';
 import { ThemeProvider } from './components/context/ThemeContext';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -33,14 +34,18 @@ const router = createBrowserRouter([
     path: "/metas",
     element: <Metas />
   },
+  {
+    path: "/faketime",
+    element: <FakeTime />
+  },
 ]);
 
 function App() {
   return (
     <ThemeProvider>
-      <div className="App">
-          <RouterProvider router={router} />
-      </div>
+        <div className="App">
+            <RouterProvider router={router} />
+        </div>
     </ThemeProvider>
   );
 }
