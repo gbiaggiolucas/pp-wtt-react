@@ -3,35 +3,30 @@ import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { api } from "../services/api";
 import { Link } from "react-router-dom";
-import Logo from '../img/WTT.png';  // Caminho correto para o arquivo da logo
+import logo from '../img/WTT.png';  // Caminho correto para o arquivo da logo
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Main = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [socialData, setSocialData] = useState([]); // Estado para armazenar os dados do backend
-    const email = localStorage.getItem("email");  // Recupera o email armazenado
 
     useEffect(() => {
         const fetchData = async () => {
-            if (email) {
-                try {
-                    const response = await api.get(`/time/get/${email}`);  // Envia o email como parâmetro
-                    if (response.data && response.data.dados) {
-                        setSocialData(response.data.dados);  // Armazena os dados na resposta
-                    } else {
-                        console.error("Erro ao carregar dados: Nenhum dado encontrado");
-                    }
-                } catch (error) {
-                    console.error("Erro ao buscar dados:", error.response ? error.response.data : error.message);
+            try {
+                const response = await api.get(`/time/get`);  // Busca dados pelo `usuario_id = 1`
+                if (response.data && response.data.dados) {
+                    setSocialData(response.data.dados);  // Armazena os dados na resposta
+                } else {
+                    console.error("Erro ao carregar dados: Nenhum dado encontrado");
                 }
-            } else {
-                console.error("Email não encontrado. Usuário não está logado.");
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error.response ? error.response.data : error.message);
             }
         };
-
+    
         fetchData();
-    }, [email]);
+    }, []);    
 
     const labels = socialData.map(item => item.nomeRedeSocial);
     const dataInMinutes = socialData.map(item => item.tempoEmMilissegundos / (60 * 1000)); // Convertendo de milissegundos para minutos
@@ -78,9 +73,11 @@ const Main = () => {
         <>
             <nav className="navbar">
                 <div className="container-fluid">
-                    <img src={Logo} alt="Logo" className="wtt" />
+                    <img src={logo} alt="Wtt icon" className="wtt" />
                     <h2>Bem Vindo!</h2>
                     <button className="navbar-toggler" type="button" onClick={toggleOffcanvas}>
+                        <span className="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon"></span>
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className={`offcanvas ${isOpen ? 'open' : ''}`} id="offcanvasNavbar">
@@ -102,15 +99,17 @@ const Main = () => {
                             </ul>
                         </div>
                     </div>
-                </div> 
+                </div>
             </nav>
             <main>
-                <h3>Redes Sociais</h3>
-                <div className="chart-container">
+                <div className="container">
+                    <h3>Seu Tempo nas Redes Sociais</h3>
                     <Pie data={data} options={options} />
-                    <p>Total de tempo: {totalHours} horas e {remainingMinutes} minutos</p>
+                    <p className="total-time">
+                        Total de tempo nas redes sociais: <br /> {totalHours} horas e {remainingMinutes} minutos.
+                    </p>
                 </div>
-            </main>
+            </main> 
         </>
     );
 };

@@ -5,7 +5,7 @@ const { sendTime, getTime } = require('../controller/timeController');
 
 /**
  * @swagger
- * /create/account:
+ * /time/send:
  *  post:
  *     summary: Envia o tempo em redes sociais
  *     responses:
@@ -23,7 +23,7 @@ router.post('/time/send', sendTime);
 
 /**
  * @swagger
- * /auth/login:
+ * /time/get:
  *  get:
  *     summary: Adquire o tempo em redes sociais enviado
  *     responses:
@@ -37,6 +37,6 @@ router.post('/time/send', sendTime);
  *                  type object
  */
 
-router.get('/time/get/:email', getTime);
+router.get('/time/get', getTime);
 
 module.exports = router;

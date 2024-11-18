@@ -1,4 +1,4 @@
-const connection = require('../config/db');
+const connection = require('../config/db'); // Usando a conexão do MySQL
 const dotenv = require('dotenv').config();
 
 async function sendTime(request, response) {
@@ -31,28 +31,20 @@ async function sendTime(request, response) {
     });
 }
 
-
 // Controller para buscar dados de tempo nas redes sociais por user_id
-const getTime = async (req, res) => {
-    const email = req.params.email;  // Aqui o email será obtido da URL
-
-    if (!email) {
-        return res.status(400).json({ message: "Email não fornecido." });
-    }
-
-    try {
-        const query = "SELECT * FROM tempo_redes_sociais WHERE usuario_id = (SELECT id FROM usuario WHERE email = ?)";
-        const [dados] = await db.execute(query, [email]);
-
-        if (dados.length > 0) {
-            res.status(200).json({ dados });
-        } else {
-            res.status(404).json({ message: "Nenhum dado encontrado para este usuário." });
+const getTime = (req, res) => {
+    connection.query("SELECT * FROM tempo_redes_sociais WHERE usuario_id = ?", [1], (err, result) => {
+        if (err) {
+            console.error("Erro ao buscar dados:", err);
+            return res.status(500).json({ success: false, message: "Erro no servidor" });
         }
-    } catch (error) {
-        console.error("Erro ao buscar dados:", error);
-        res.status(500).json({ message: "Erro interno ao buscar os dados." });
-    }
+
+        if (result.length > 0) {
+            return res.status(200).json({ success: true, dados: result });
+        } else {
+            return res.status(404).json({ success: false, message: "Nenhum dado encontrado" });
+        }
+    });
 };
 
 module.exports = {
